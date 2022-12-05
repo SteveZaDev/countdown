@@ -7,7 +7,7 @@ const occasions = [
     {occ: "Olga's Birthday",
     date: "Dec 27 2022",
     time: 0, 
-    img:  'url(./img/olga.bmp)',
+    img:  'url(./img/newyears.jpg)',
     color: 'orange'},
     {occ: "Alex's Birthday",
     date: "Nov 30 2023",
