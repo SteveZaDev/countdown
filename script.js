@@ -1,3 +1,6 @@
+/*Putting all of these rules together, you can see that a year is a leap year not only if it is divisible by 4 -- it also has to be divisible by 400 if it is a centurial year. So 1700, 1800 and 1900 were not leap years, but 2000 was. This is related to the Year 2000 problem, because many computer programs would have calculated the leap year ...*/
+
+
 const occasions = [
   { occ: "New Years",
     date: "Jan 1 2023",  
@@ -23,7 +26,22 @@ const occasions = [
     date: "Jan 6 2023",
     time: 17, 
     img:  'url(./img/uke.jpg)',
-    color: 'white'}
+    color: 'white'},
+    {occ: "Pearl Harbor",
+    date: "Dec 7 1941",
+    time: 13, 
+    img:  'url(./img/pearl.jpg)',
+    color: 'white'},
+    {occ: "Alex's Birth",
+    date: "Nov 30 1992",
+    time: 0, 
+    img:  'url(./img/lexi1196.bmp)',
+    color: 'orange'},
+    {occ: "My Birth",
+    date: "Dec 27, 1953",
+    time: 11, 
+    img:  'url(./img/olga.bmp)',
+    color: 'lightblue'}
 ]
 
 const ham = document.getElementById("ham");
@@ -63,6 +81,7 @@ ham.addEventListener("click", () => {
 
 
 function countdown(){
+    const yearsEl = document.getElementById("years");
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minsEl = document.getElementById("mins");
@@ -81,6 +100,7 @@ function countdown(){
 
 
       occEl.style.color = occasions[rNum].color;
+      yearsEl.style.color = occasions[rNum].color;
       daysEl.style.color = occasions[rNum].color;
       minsEl.style.color = occasions[rNum].color;
       hoursEl.style.color = occasions[rNum].color;
@@ -93,8 +113,14 @@ function countdown(){
 
     // function countdown() {
         const occasionDate = new Date(countdownDate); 
+
+      
         occasionDate.setHours(occasions[rNum].time);
         const currentDate = new Date();
+        let oYear = occasionDate.getFullYear();
+        let cYear = currentDate.getFullYear();
+        console.log("occasion year = " + oYear);
+        console.log("current year = " + cYear);
 
         let totalSeconds = (occasionDate - currentDate) / 1000;
 
@@ -105,11 +131,59 @@ function countdown(){
           occEl.textContent= occasions[rNum].occ + " in";
         }
 
-        const days = Math.floor(totalSeconds / 3600 / 24);
+        
+        let days = Math.floor(totalSeconds / 3600 / 24);
         const hours = Math.floor(totalSeconds / 3600) % 24;
         const mins = Math.floor(totalSeconds / 60) % 60;
         const seconds = Math.floor(totalSeconds) % 60;
+        const years = (Math.floor(days / 365.2425)) 
+        console.log("days = " + days + " " + "Years = " + years);
 
+        let leapYear = false;
+        let startYear = 0;
+        let endYear = 0;
+
+        document.querySelector(".days-c").hidden = false
+        if (days === 0){
+           document.querySelector(".days-c").hidden = true
+            }
+
+        document.querySelector(".hours-c").hidden = false
+        if (hours === 0){
+            document.querySelector(".hours-c").hidden = true
+            }    
+  
+        document.querySelector(".years-c").hidden = true
+        if(years!=0){
+
+          document.querySelector(".years-c").hidden = false
+
+          if(oYear<cYear){
+            startYear = oYear;
+            endYear = cYear;  
+          } else {
+            startYear = cYear;
+            endYear = oYear;
+          }
+          days = days - (365 * years);
+          for (i=startYear; i<endYear; i++){
+            /* if any year in the range is a leap year subtract 1 from the days */
+            console.log(i);
+            leapYear = isLeapYear(i);
+            if (leapYear){
+              console.log("leap year");
+              days--;
+            }
+          }
+          leapYear = isLeapYear(startYear);
+          if (leapYear){
+            days++;
+          }
+
+        } 
+
+
+        yearsEl.innerHTML = years;
         daysEl.innerHTML = days;
         hoursEl.innerHTML = formatTime(hours);
         minsEl.innerHTML = formatTime(mins);
@@ -125,51 +199,11 @@ function countdown(){
 
  setInterval(countdown, 1000);
 
-
-
-
- /*
- var BLOCKS_PER_CHART = 10;
-
-function generateChart(chartContainer) {
-  var container = document.createElement("div");
-  var text = "Hello World!";
-  var blockDiv, textSpan;  // used in the for loop
-
-  container.className = "container2";
-  document.getElementById(chartContainer.replace("#", "")).appendChild(container);
-
-  for(var i = 0; i < BLOCKS_PER_CHART; i++) {
-    blockDiv = document.createElement("div");
-    blockDiv.className = "block";
-    textSpan = document.createElement("span");
-    textSpan.append(text);  // see note about browser compatibility
-    blockDiv.append(textSpan);
-    container.append(blockDiv);
-  }
-}
- 
-
-
-
-
-Try below code.
-
-var allBlues = document.querySelectorAll(".blue");
-var divWrapper = document.createElement("div");
-divWrapper.className = "wrapper";
-for(var i = 0; i < allBlues.length; i++){
-  // Iterate through all the siblings.
-  var tempEle;
-  while(tempEle = allBlues[i].nextElementSibling){
-    divWrapper.appendChild(tempEle);
-  }
+ function isLeapYear(year){
+  return (year%4 === 0 && year%100 !==0 || year%400 === 0);
 }
 
-main.appendChild(divWrapper);
 
 
 
 
-
- */
