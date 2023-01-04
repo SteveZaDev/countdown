@@ -81,12 +81,12 @@ ham.active{
 
 .btn{
   background-color: rebeccapurple;
-  font-size: 4vh;
-  padding: .1rem; 
+  font-size: 2vh;
+  padding: .01  5rem; 
   border: none;
   color: white;
   transition: transform .5s ease-in-out; 
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 button:hover{
   cursor: pointer;
@@ -123,14 +123,20 @@ button:hover{
     }    
   }      
 
-  @media screen and (min-width: 900px){
+  @media screen and (min-width: 750px){
     body{
       background-position: center;
     }
     h1 {
-      font-size: 4rem;
+      font-size: 3rem;
       }
     .big-text{
-      font-size: 5rem;
+      font-size: 4rem;
     }    
+
+    .btn{
+      font-size: 3vh;
+    }
+
+    
   }      
