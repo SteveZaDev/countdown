@@ -40,15 +40,15 @@ let defaultOccasions = [
 ]
 
 
-let helpText = `This version of WORDLE, plays like a cross between Wordle and Wheel of Fortune. Instead of solving for a 5 letter word, you will be trying to figure out an item belonging to a particular category. The answer can be anywhere from 4 to 20+ characters and can include spaces. The default category is US Presidents, but you can select your own by clicking on the 2nd icon from the right. All available categories will be displayed along with the number of items in that category. The active ones will be in black, the inactive in gray. Click to toggle each category. As in the original WORDLE, stats are provided. Click on the bar-graph icon for a summary, then i, for more info. 
-TIPS - As far as game play goes, here a few differences from the original and some suggestions. First off, for any response over 10 characters, you will get 8 guesses. The game does not check for valid words, names, or places, so gibberish is allowed. In fact, it may be your best strategy. Long solutions will likely be multi-word solutions, and you may want to find those word breaks by entering all spaces for your first guess. (Click the duplicate icon and spaces will be filled in from your current position in the row). Green spaces will indicate the word breaks. If you select multiple categories and are flummoxed, click on the mag glass icon to display the random category chosen by the game.      <a id="link-help" href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/" target="_blank">?</a>
+const testLink = "I read and agree to the <a href='https://www.mail-signatures.com/articles/direct-link-to-hosted-image/' target='_blank'>Privacy Policy</a>";
+
+
+
+
+let helpText = `COUNTDOWN to any date and time in the future or count up from any date and time in the past. In addition to a small set of default dates, you can add up to 12 custom occasions of your own. Each occasion can be set down to a minutes accuracy. Add background images specific to each occasion.  <a href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/" target="_blank">?</a>
 ***Solving tip - On especially long wordles, after several guesses have been made, the game board can look quite busy. Click or tap the title 'WORLDLE' and the current row will be filled with all of the letters that you have correctly guessed. This often results in an a-ha moment when the solution jumps out at you. Then backup thru the word via the delete key and then fill in the blanks with your solution. 
 --Note - on narrow screens, wordles over 21 letters will be cut off at 21.
-***Customize - You can customize your WORLDLE experience to some degree by selecting the gear shaped icon. 
---Choose your background - The top icon (with 6 little pics inside), will select a random background pic for each session. Below that are 6 photos, choose any one of them and that will be your background. There is also an input field where you can paste a link to any image on the web that you can get a direct link to. Paste in the link, press enter and your background will change. This works well on desktops but is hit or miss on mobile. 
---If you prefer shorter WORLDLES to solve, you can limit the maximum number of characters to anything 5 and over, the lower you go, available categories will be limited.
---Set your background audio to any of those listed. You can always turn off your background audio via the audio icon (third from the right.)
---Chameleon Mode offers an additional twist to your play. Instead of the traditional Wordle tile colors of dark gray, yellow and green, Chameleon Mode will set random colors for those tiles that are usually yellow and green. Dark gray for 'incorrect' will remain as usual, but the tile color for correctly placed letters and those that are contained within the word but not correctly placed will vary, and you have to figure that out.
+within the word but not correctly placed will vary, and you have to figure that out.
 --Free Spaces Reveal - Selecting this option will let you reveal all spaces in the wordle without using up a guess.
 ----------------
 ----------------
@@ -844,7 +844,8 @@ function initHelpModal() {
     console.log("just clicked on help button")
     modal.style.display = "block";
     helpEl = document.querySelector(".modal-body")
-    helpEl.innerText = helpText + "\n" + "\n"
+ //   helpEl.innerText = helpText + "\n" + "\n"
+    helpEl.innerHTML = helpText + testLink
     const audio = new Audio ("./auds/stats.mp3");
     audio.play()
   });
