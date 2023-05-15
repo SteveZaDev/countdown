@@ -17,13 +17,14 @@
       <section id="display">
         <div class="header-left">
           <i class="far fa-question-circle" id="help"></i>
+          <button id="add">Add</button>
+          <button id="edit">Edit</button>
+          <button id="del">Del</button>
         </div>
         <button id="ham">☰</button>
-        <button id="add">Add</button>
-        <button id="edit">Edit</button>
-        <button id="del">Del</button>
+
        
-      <div id="occasion-container">
+      <div id="occasion-container" class="black-bkg">
         <h1 id="occasion"></h1>
 
         <div class="countdown-container">
@@ -68,21 +69,22 @@
 
 
       <div id="form-input"> 
-        <label for="custom"><h5>
-          Name of Custom Occasion:
-        </h5></label>
-        <input type="text" id="custom" name="custom" maxlength="25" placeholder="Enter Occasion"> 
-        <hr></hr>
-
         <select id="selectOccasion" onchange="occSelected()">
           <option>Select Occasion to Delete</option>
         </select>
+        <div id="custom-occasion">
+        <label for="custom"><h5>
+          Name of Custom Occasion:
+        </h5></label>
+        <input type="text" id="custom" name="custom" maxlength="25" placeholder="Occasion"> 
+      </div>
+        <hr></hr>
       </div> 
 
 
-      <textarea id="landscape-text" placeholder="Landscape - You can copy a link to an internet or personal cloud image, then press enter."></textarea> 
+      <textarea id="landscape-text" placeholder="Landscape - You can copy a link to an internet or personal cloud image."></textarea> 
       <img id="landscape-img"  src="./img/christmas.jpg">
-      <textarea id="portrait-text" placeholder="Portrait - You can copy a link to an internet or personal cloud image, then press enter."></textarea> 
+      <textarea id="portrait-text" placeholder="Portrait - You can copy a link to an internet or personal cloud image."></textarea> 
       <img id="portrait-img" src="./img/christmas.jpg">
       <hr></hr>
 

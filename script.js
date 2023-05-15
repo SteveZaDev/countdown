@@ -117,13 +117,16 @@ const edit = document.getElementById("edit");
 const del = document.getElementById("del");
 
 initHelpModal();
+initOccCont();
 
 ham.addEventListener("click", () => {
   navbar.classList.toggle("active");
   ham.classList.toggle("active");
-  add.classList.toggle("hidden");
+ /* add.classList.toggle("hidden");*/
 });
 
+
+/* these are the buttons that show on main screen */
 add.addEventListener("click", () => {
   occNum++;
   editOccasions('add');
@@ -299,7 +302,9 @@ function editOccasions(editType){
   if (editType === "add"){
   deleteEl.classList.add("hidden");
   submitEl.classList.add("hidden");
-  addEl.classList.remove("hidden")
+  addEl.classList.remove("hidden");
+  let selectEl = document.getElementById("selectOccasion");
+  selectEl.classList.add("hidden");
   }
 
   if (editType === "del"){
@@ -307,6 +312,8 @@ function editOccasions(editType){
     submitEl.classList.add("hidden");
     deleteEl.classList.remove("hidden");
     let selectEl = document.getElementById("selectOccasion");
+    selectEl.classList.remove("hidden");
+
      selectEl.innerHTML = ""
     let el = document.createElement("option");
     el.textContent = "Select Occasion";
@@ -327,6 +334,8 @@ function editOccasions(editType){
       submitEl.classList.remove("hidden");
       deleteEl.classList.add("hidden");
       let selectEl = document.getElementById("selectOccasion");
+      selectEl.classList.remove("hidden");
+
        selectEl.innerHTML = ""
       let el = document.createElement("option");
       el.textContent = "Select Occasion";
@@ -607,7 +616,7 @@ function createDefOccasionButtons(){
           rNum = occasions.map(x => x.occ).indexOf(occasion.occ)
           navbar.classList.toggle("active");
           ham.classList.toggle("active");
-          add.classList.toggle("hidden");
+     /*     add.classList.toggle("hidden");*/
           setInterval(countdown, 1000);
         });
     
@@ -658,7 +667,7 @@ function createDefOccasionButtons(){
           console.log ("rNum = " + rNum);
           navbar.classList.toggle("active");
           ham.classList.toggle("active");
-          add.classList.toggle("hidden");
+       /*   add.classList.toggle("hidden");*/
           setInterval(countdown, 1000);
         });
     
@@ -863,6 +872,25 @@ function initHelpModal() {
   });
 }
 
+
+function initOccCont() {
+  const occContEl = document.getElementById("occasion-container");
+  occContEl.addEventListener("click", function () {
+    console.log("just clicked on occasion container")
+     if (occContEl.className === "black-bkg") {
+       occContEl.classList.remove("black-bkg");
+       occContEl.classList.add("white-bkg");
+     } else if (occContEl.className === "white-bkg") {
+      occContEl.classList.remove("white-bkg");
+      occContEl.classList.add("no-bkg");
+    } else {    
+        occContEl.classList.remove("no-bkg");
+    occContEl.classList.add("black-bkg");
+
+    }
+    ;
+    });
+}
 
 
 
