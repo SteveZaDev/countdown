@@ -45,13 +45,10 @@ const testLink = "I read and agree to the <a href='https://www.mail-signatures.c
 
 
 
-let helpText = `COUNTDOWN to any date and time in the future or count up from any date and time in the past. In addition to a small set of default dates, you can add up to 12 custom occasions of your own. Each occasion can be set down to a minutes accuracy. Add background images specific to each occasion.  <a href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/" target="_blank">?</a>
-***Solving tip - On especially long wordles, after several guesses have been made, the game board can look quite busy. Click or tap the title 'WORLDLE' and the current row will be filled with all of the letters that you have correctly guessed. This often results in an a-ha moment when the solution jumps out at you. Then backup thru the word via the delete key and then fill in the blanks with your solution. 
---Note - on narrow screens, wordles over 21 letters will be cut off at 21.
-within the word but not correctly placed will vary, and you have to figure that out.
---Free Spaces Reveal - Selecting this option will let you reveal all spaces in the wordle without using up a guess.
-----------------
-----------------
+let helpText = `COUNTDOWN to any date and time in the future or count up from any date and time in the past. In addition to a small set of default dates, you can add up to 12 custom occasions of your own. Each occasion can be set to a minutes accuracy. Add background images specific to each occasion. These can be direct links to anywhere on the web (find an image you like, right click on it, select "copy image link", then paste that into either the Landscape or Portrait box when adding or editing occasions).  Or you can get links to your own pics on sites like <a href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/#google-drive" target="_blank">Google Drive</a> or <a href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/#onedrive" target="_blank">OneDrive</a> or <a href="https://www.mail-signatures.com/articles/direct-link-to-hosted-image/" target="_blank">others</a>.
+<br>
+\u00A0\u00A0\u00A0When you first enter the site, the default occasion of New Year's will be displayed. 
+Select the icon in the upper right to display the default occasions available and any ones that you have added. (Bear in mind that any occasions you add are specific to the device and browser you are using. If you add occasions in Firefox, those will not be available in Chrome).  The default display of the countdown will be shown in white text over a semi-transparent black background box. Click anywhere within the background box to cycle thru the other displays available that may better suit your eye or go better with the image you have chosen for your background.  
 `
 
 
@@ -118,6 +115,7 @@ const del = document.getElementById("del");
 
 initHelpModal();
 initOccCont();
+initBkg();
 
 ham.addEventListener("click", () => {
   navbar.classList.toggle("active");
@@ -187,7 +185,7 @@ function countdown(){
       body.style.backgroundImage = "url(" + occasions[rNum].portraitImg + ")";
     }
 
-
+    /* pinned off on 5/16/23 
       occEl.style.color = occasions[rNum].color;
       yearsEl.style.color = occasions[rNum].color;
       daysEl.style.color = occasions[rNum].color;
@@ -199,7 +197,7 @@ function countdown(){
         {
           spans[i].style.color = occasions[rNum].color;
         }
-
+        */
     // function countdown() {
         const occasionDate = new Date(countdownDate); 
 
@@ -854,7 +852,7 @@ function initHelpModal() {
     modal.style.display = "block";
     helpEl = document.querySelector(".modal-body")
  //   helpEl.innerText = helpText + "\n" + "\n"
-    helpEl.innerHTML = helpText + testLink
+    helpEl.innerHTML = helpText
     const audio = new Audio ("./auds/stats.mp3");
     audio.play()
   });
@@ -875,20 +873,32 @@ function initHelpModal() {
 
 function initOccCont() {
   const occContEl = document.getElementById("occasion-container");
-  occContEl.addEventListener("click", function () {
-    console.log("just clicked on occasion container")
+
+  occContEl.addEventListener("click", function (event) {
+    event.stopPropagation();
+        console.log("just clicked on occasion container")
      if (occContEl.className === "black-bkg") {
        occContEl.classList.remove("black-bkg");
        occContEl.classList.add("white-bkg");
      } else if (occContEl.className === "white-bkg") {
       occContEl.classList.remove("white-bkg");
-      occContEl.classList.add("no-bkg");
-    } else {    
-        occContEl.classList.remove("no-bkg");
-    occContEl.classList.add("black-bkg");
-
+      occContEl.classList.add("no-bkg-white");
+    } else if (occContEl.className === "no-bkg-white") {    
+      occContEl.classList.remove("no-bkg-white");
+      occContEl.classList.add("no-bkg-black");
+    } else {  
+      occContEl.classList.remove("no-bkg-black");
+      occContEl.classList.add("black-bkg");
     }
     ;
+    });
+}
+
+
+function initBkg() {
+  const body = document.getElementsByTagName('body')[0];
+  body.addEventListener("click", function () {
+    console.log("just clicked on body")
     });
 }
 
