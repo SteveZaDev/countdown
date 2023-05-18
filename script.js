@@ -40,6 +40,30 @@ let defaultOccasions = [
 ]
 
 
+const backgroundImagesPortrait=[
+  // "https://images.pexels.com/photos/1834407/pexels-photo-1834407.jpeg?auto=compress&cs=tinysrgb&w=1600",
+   "https://images.pexels.com/photos/2627945/pexels-photo-2627945.jpeg?auto=compress&cs=tinysrgb&w=1600",
+   "https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg",
+   "https://images.pexels.com/photos/221502/pexels-photo-221502.jpeg?auto=compress&cs=tinysrgb&w=1600",
+   "https://cdn.pixabay.com/photo/2017/08/31/11/35/alps-2700403_960_720.jpg",
+   "https://images.unsplash.com/photo-1543837173-6c26bc89937b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YXV0dW1ufGVufDB8MXwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+   "https://images.unsplash.com/photo-1553114836-026cecec9778?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fG5hdHVyZXxlbnwwfDF8MHx8&auto=format&fit=crop&w=500&q=60"
+ //  "https://cdn.pixabay.com/photo/2023/01/22/12/17/flower-7736238__340.jpg"
+ ]
+ 
+ const backgroundImagesLandscape=[
+   "https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?auto=compress&cs=tinysrgb&w=1600",
+   "https://cdn.pixabay.com/photo/2021/01/09/20/23/road-5903402__340.jpg",
+   "https://images.pexels.com/photos/221502/pexels-photo-221502.jpeg?auto=compress&cs=tinysrgb&w=1600",
+   "https://cdn.pixabay.com/photo/2017/08/31/11/35/alps-2700403_960_720.jpg",
+   "https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&w=1600",
+   "https://images.unsplash.com/photo-1566155119454-2b581dd44c59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fHNwcmluZ3xlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60"
+ ]
+
+
+
+
+
 const testLink = "I read and agree to the <a href='https://www.mail-signatures.com/articles/direct-link-to-hosted-image/' target='_blank'>Privacy Policy</a>";
 
 
@@ -109,9 +133,9 @@ let workIndex = 0;
 
 const ham = document.getElementById("ham");
 const navbar = document.getElementById("navbar");
-const add = document.getElementById("add");
-const edit = document.getElementById("edit");
-const del = document.getElementById("del");
+const bodyAdd = document.getElementById("body-add");
+const bodyEdit = document.getElementById("body-edit");
+const bodyDel = document.getElementById("body-del");
 
 initHelpModal();
 initOccCont();
@@ -125,20 +149,20 @@ ham.addEventListener("click", () => {
 
 
 /* these are the buttons that show on main screen */
-add.addEventListener("click", () => {
+bodyAdd.addEventListener("click", () => {
   occNum++;
   editOccasions('add');
 });
 
-del.addEventListener("click", () => {
+bodyDel.addEventListener("click", () => {
   occNum++;
   editOccasions('del');
 });
 
 
-edit.addEventListener("click", () => {
+bodyEdit.addEventListener("click", () => {
   occNum++;
-  editOccasions('submit');
+  editOccasions('edit');
 });
 
 
@@ -285,10 +309,7 @@ function countdown(){
 
     function formatTime(time) {
         return time < 10 ? `0${time}` : time;
-}
-
-// initial call
-//countdown();
+}  //END OF COUNTDOWN FUNCTION
 
  setInterval(countdown, 1000);
 
@@ -311,11 +332,9 @@ function editOccasions(editType){
     deleteEl.classList.remove("hidden");
     let selectEl = document.getElementById("selectOccasion");
     selectEl.classList.remove("hidden");
-
-     selectEl.innerHTML = ""
+    selectEl.innerHTML = ""
     let el = document.createElement("option");
     el.textContent = "Select Occasion";
-  //  el.value = i;
     selectEl.appendChild(el);
     for(i = 0; i < customOccasions.length; i++) {
       let opt = customOccasions[i].occ;
@@ -327,7 +346,7 @@ function editOccasions(editType){
     }
 
 
-    if (editType === "submit"){
+    if (editType === "edit"){
       addEl.classList.add("hidden");
       submitEl.classList.remove("hidden");
       deleteEl.classList.add("hidden");
@@ -424,6 +443,8 @@ function editOccasions(editType){
   editLandscapeImgEl.style.height = '54px'
   editPortraitImgEl.style.width = '54px'
   editPortraitImgEl.style.height = '96px'
+
+  /*
   landscapeTextEl.addEventListener("keydown", function (event) {
     var key = event.key;
     // If the user has pressed enter
@@ -435,20 +456,18 @@ function editOccasions(editType){
 
        }
   });
-
+*/
 
   landscapeTextEl.addEventListener("selectionchange", function (event) {
       editLandscapeImgEl.src = landscapeTextEl.value
-
-    });
+  });
 
     portraitTextEl.addEventListener("selectionchange", function (event) {
       editPortraitImgEl.src = portraitTextEl.value
-
     });
 
 
-
+/*
   portraitTextEl.addEventListener("keydown", function (event) {
     var key = event.key;
     // If the user has pressed enter
@@ -461,7 +480,7 @@ function editOccasions(editType){
        }
   });
 
-
+*/
 
 
 
@@ -487,7 +506,7 @@ function isDST(d) {
 
 
 function initPreferencesModal() {
-
+// AS OF 5-18-23 THIS FUNCTION IS NOT CALLED
 
   const modal = document.getElementById("preferences-modal");
   // Get the button that opens the preferences modal
@@ -697,6 +716,15 @@ function createDefOccasionButtons(){
             let customEl = document.getElementById("custom")
             customObj.landscapeImg = landscapeTextEl.value;
             customObj.portraitImg = portraitTextEl.value;
+            if (landscapeTextEl.value === ""){
+              let randomImg = Math.floor(Math.random()*backgroundImagesLandscape.length)
+              customObj.landscapeImg = backgroundImagesLandscape[randomImg]; 
+            }
+            if (landscapeTextEl.value === ""){
+              let randomImg = Math.floor(Math.random()*backgroundImagesPortrait.length)
+              customObj.portraitImg = backgroundImagesPortrait[randomImg];
+            }
+
             customObj.date = datePicked.value.replace(/-/g, '\/');
             customObj.occ = customEl.value
             customObj.time = hourEl.value
@@ -824,6 +852,11 @@ function fillForm(workItem){
   editLandscapeImgEl.src = customOccasions[workIndex].landscapeImg;
   editPortraitImgEl.src = customOccasions[workIndex].portraitImg;
 
+
+/*  let randomImg = Math.floor(Math.random()*backgroundImagesPortrait.length)
+  //        const body = document.getElementsByTagName('body')[0];
+        body.style.backgroundImage = "url(" + backgroundImagesPortrait[randomImg] + ")";
+*/
 }
 
 
@@ -904,4 +937,27 @@ function initBkg() {
 
 
 
+// NOT USED - PUT HERE AS SAMPLE CODE
+function initLook(){
+  // Select background image based on portrait or landscape mode but first check for default
+  const body = document.getElementsByTagName('body')[0];
+  let backgroundImage  = JSON.parse(window.localStorage.getItem('background'));
+  console.log("background from localstorage = " + backgroundImage)
+//    window.localStorage.setItem('background', JSON.stringify(resultsArray));
+  if (backgroundImage === "Random" || !backgroundImage){
+    if (window.innerHeight > window.innerWidth){
+      let randomImg = Math.floor(Math.random()*backgroundImagesPortrait.length)
+//        const body = document.getElementsByTagName('body')[0];
+      body.style.backgroundImage = "url(" + backgroundImagesPortrait[randomImg] + ")";
+    } else {  
+      let randomImg = Math.floor(Math.random()*backgroundImagesLandscape.length)
+//      const body = document.getElementsByTagName('body')[0];
+      body.style.backgroundImage = "url(" + backgroundImagesLandscape[randomImg] + ")";
+  }
+} else {
+  body.style.backgroundImage = "url(" + backgroundImage + ")";
+}
 
+
+//  initAudio()
+}
