@@ -13,8 +13,8 @@ let defaultOccasions = [
     date: "Jan 1 2024",  
     time: 0, 
     mins: 0, 
-    landscapeImg:  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F4.bp.blogspot.com%2F-ENfd9HLN6TQ%2FVlTxbngarBI%2FAAAAAAAAAbU%2FvG7pUa3p1WQ%2Fs1600%2F2024%252Bervev.jpg&f=1&nofb=1&ipt=2dd65f79a12782682ccc791b7442d9ca463ff6b5b1092710518a20285bfe3278&ipo=images',
-    portraitImg:  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F4.bp.blogspot.com%2F-ENfd9HLN6TQ%2FVlTxbngarBI%2FAAAAAAAAAbU%2FvG7pUa3p1WQ%2Fs1600%2F2024%252Bervev.jpg&f=1&nofb=1&ipt=2dd65f79a12782682ccc791b7442d9ca463ff6b5b1092710518a20285bfe3278&ipo=images',  
+    landscapeImg:  './img/2024landscape.png',
+    portraitImg:  'https://thumbs.dreamstime.com/b/golden-new-year-numbers-confetti-champagne-bottle-vertical-golden-color-palette-photo-new-year-numbers-surrounded-264564709.jpg',  
     color: 'white'},   
     {occ: "Christmas",
     date: "Dec 25 2023",
@@ -156,6 +156,7 @@ bodyAdd.addEventListener("click", () => {
 
 bodyDel.addEventListener("click", () => {
   occNum++;
+  workIndex = 100;
   editOccasions('del');
 });
 
@@ -762,6 +763,9 @@ function createDefOccasionButtons(){
 
       deleteEl.addEventListener("click", function (event) {
         console.log("delete button clicked XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        if (workIndex === 100){
+          return;
+        }
  
         customOccasions.splice(workIndex, 1); // 2nd parameter means remove one item only
         
@@ -906,6 +910,10 @@ function initHelpModal() {
 
 function initOccCont() {
   const occContEl = document.getElementById("occasion-container");
+  const leftArrEl = document.getElementById("left-button");
+  const rightArrEl = document.getElementById("right-button");
+
+  
 
   occContEl.addEventListener("click", function (event) {
     event.stopPropagation();
@@ -913,20 +921,60 @@ function initOccCont() {
      if (occContEl.className === "black-bkg") {
        occContEl.classList.remove("black-bkg");
        occContEl.classList.add("white-bkg");
+       leftArrEl.classList.remove("black-bkg");
+       leftArrEl.classList.add("white-bkg");
+       rightArrEl.classList.remove("black-bkg");
+       rightArrEl.classList.add("white-bkg");
      } else if (occContEl.className === "white-bkg") {
       occContEl.classList.remove("white-bkg");
       occContEl.classList.add("no-bkg-white");
+      leftArrEl.classList.remove("white-bkg");
+      leftArrEl.classList.add("no-bkg-white");
+      rightArrEl.classList.remove("white-bkg");
+      rightArrEl.classList.add("no-bkg-white");
     } else if (occContEl.className === "no-bkg-white") {    
       occContEl.classList.remove("no-bkg-white");
       occContEl.classList.add("no-bkg-black");
+      leftArrEl.classList.remove("no-bkg-white");
+      leftArrEl.classList.add("no-bkg-black");
+      rightArrEl.classList.remove("no-bkg-white");
+      rightArrEl.classList.add("no-bkg-black");
     } else {  
       occContEl.classList.remove("no-bkg-black");
       occContEl.classList.add("black-bkg");
+      leftArrEl.classList.remove("no-bkg-black");
+      leftArrEl.classList.add("black-bkg");
+      rightArrEl.classList.remove("no-bkg-black");
+      rightArrEl.classList.add("black-bkg");
     }
     ;
     });
-}
 
+
+    leftArrEl.addEventListener("click", function (event) {
+      event.stopPropagation();
+      console.log("just clicked on left arrow")
+      if (rNum === 0){
+        rNum = occasions.length - 1; 
+      } else {
+        rNum--;
+      }
+    });
+
+
+     
+    rightArrEl.addEventListener("click", function (event) {
+      event.stopPropagation();
+      console.log("just clicked on right arrow")
+      if (rNum === (occasions.length - 1)){
+        rNum = 0; 
+      } else {
+        rNum++;
+      }
+     });
+   
+
+}
 
 function initBkg() {
   const body = document.getElementsByTagName('body')[0];
@@ -961,3 +1009,4 @@ function initLook(){
 
 //  initAudio()
 }
+
