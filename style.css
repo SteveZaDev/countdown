@@ -264,7 +264,7 @@ button:hover{
    }  
 
    #occasion-container{
-    width: 85vw;
+    width: 98vw;
     max-width: 700px;
     border-radius: 25px;
    }
@@ -799,5 +799,5 @@ label {
 }
 
 .action-buttons .right-button {
-  right: .20%;
+  right: 0%;
 }

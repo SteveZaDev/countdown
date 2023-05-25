@@ -94,6 +94,7 @@ let customOccasions = []
 
 const displayEl = document.getElementById("display")
 const customEditEl = document.getElementById("custom-edit")
+const actionButtonsEl = document.getElementById("action-buttons")
 
 const occasionArray = []
 localStorage.removeItem("testsession");
@@ -319,6 +320,8 @@ function countdown(){
 }
 
 function editOccasions(editType){
+  
+  actionButtonsEl.classList.toggle("hidden");
   if (editType === "add"){
   deleteEl.classList.add("hidden");
   submitEl.classList.add("hidden");
@@ -704,7 +707,7 @@ function createDefOccasionButtons(){
    
 
     addEl.addEventListener("click", function (event) {
-        console.log("add button clicked XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+      actionButtonsEl.classList.toggle("hidden");
         let customObj = 
         { occ: "Custom Occasion 1",
             date: "May 12 2023",  
@@ -748,13 +751,9 @@ function createDefOccasionButtons(){
 
 
       cancelEl.addEventListener("click", function (event) {
-        console.log("cancel button clicked XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
- 
-
-
-
         displayEl.classList.toggle("hidden");
         customEditEl.classList.toggle("hidden");
+        actionButtonsEl.classList.toggle("hidden");
 
       }); // END OF CANCELEVENT
 
@@ -762,11 +761,11 @@ function createDefOccasionButtons(){
 
 
       deleteEl.addEventListener("click", function (event) {
-        console.log("delete button clicked XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+
         if (workIndex === 100){
           return;
         }
- 
+        actionButtonsEl.classList.toggle("hidden");
         customOccasions.splice(workIndex, 1); // 2nd parameter means remove one item only
         
         nav.innerText = "";
@@ -785,7 +784,7 @@ function createDefOccasionButtons(){
 
 
       submitEl.addEventListener("click", function (event) {
-        console.log("submit button clicked XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        actionButtonsEl.classList.toggle("hidden");
         let customObj = 
         { occ: "Custom Occasion 1",
             date: "May 12 2023",  
