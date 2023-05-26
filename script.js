@@ -144,6 +144,7 @@ initBkg();
 
 ham.addEventListener("click", () => {
   navbar.classList.toggle("active");
+  actionButtonsEl.classList.toggle("hidden");
   ham.classList.toggle("active");
  /* add.classList.toggle("hidden");*/
 });
@@ -632,6 +633,7 @@ function createDefOccasionButtons(){
 
         
         btn.addEventListener("click", () => {
+          actionButtonsEl.classList.toggle("hidden");
           console.log (occasion.occ);
           rNum = 1;
           rNum = occasions.map(x => x.occ).indexOf(occasion.occ)
@@ -683,6 +685,7 @@ function createDefOccasionButtons(){
         
         btn.addEventListener("click", () => {
           console.log ("custom eventlistener " + cust.occ);
+          actionButtonsEl.classList.toggle("hidden");
           rNum = 1;
           rNum = customOccasions.map(x => x.occ).indexOf(cust.occ) + defaultOccasions.length;
           console.log ("rNum = " + rNum);
@@ -884,7 +887,8 @@ function initHelpModal() {
 
   // When the user clicks on the button, open the modal
   btn.addEventListener("click", function () {
-    console.log("just clicked on help button")
+    console.log("just clicked on help button") 
+    actionButtonsEl.classList.toggle("hidden");
     modal.style.display = "block";
     helpEl = document.querySelector(".modal-body")
  //   helpEl.innerText = helpText + "\n" + "\n"
@@ -896,12 +900,14 @@ function initHelpModal() {
   // When the user clicks on <span> (x), close the modal
   span.addEventListener("click", function () {
     modal.style.display = "none";
+    actionButtonsEl.classList.toggle("hidden");
   });
 
   // When the user clicks anywhere outside of the modal, close it
   window.addEventListener("click", function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      actionButtonsEl.classList.toggle("hidden");
     }
   });
 }
@@ -1009,3 +1015,47 @@ function initLook(){
 //  initAudio()
 }
 
+
+
+
+// swiped-left
+document.addEventListener('swiped-left', function(e) {
+  console.log("swiped left")
+  if (rNum === (occasions.length - 1)){
+    rNum = 0; 
+  } else {
+    rNum++;
+  }
+});
+// swiped-right
+document.addEventListener('swiped-right', function(e) {
+  console.log("swiped right")
+
+
+  if (rNum === 0){
+    rNum = occasions.length - 1; 
+  } else {
+    rNum--;
+  }
+
+});
+// swiped-up
+document.addEventListener('swiped-up', function(e) {
+  console.log("swiped up")
+  if (rNum === 0){
+    rNum = occasions.length - 1; 
+  } else {
+    rNum--;
+  }
+
+});
+// swiped-down
+document.addEventListener('swiped-down', function(e) {
+  console.log("swiped down")
+  if (rNum === (occasions.length - 1)){
+    rNum = 0; 
+  } else {
+    rNum++;
+  }
+
+});

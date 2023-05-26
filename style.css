@@ -94,7 +94,7 @@ h5 {
 
 nav {
   background-color: rebeccapurple;
-  opacity: .75;
+  opacity: .85;
   position: fixed;
   top: 0;
   right: 0;
@@ -791,6 +791,7 @@ label {
   z-index: 100;
   font-size: 1.5rem;
   border: none;
+  background: none;
 } 
 
 
