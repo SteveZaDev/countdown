@@ -97,6 +97,7 @@ let customOccasions = []
 const displayEl = document.getElementById("display")
 const customEditEl = document.getElementById("custom-edit")
 const actionButtonsEl = document.getElementById("action-buttons")
+const headerLeftEl = document.querySelector(".header-left")
 
 const occasionArray = []
 localStorage.removeItem("testsession");
@@ -932,9 +933,13 @@ function initOccCont() {
        leftArrEl.classList.add("white-bkg");
        rightArrEl.classList.remove("black-bkg");
        rightArrEl.classList.add("white-bkg");
+       headerLeftEl.classList.remove("black-bkg");
+       headerLeftEl.classList.add("white-bkg");
      } else if (occContEl.className === "white-bkg") {
       occContEl.classList.remove("white-bkg");
       occContEl.classList.add("no-bkg-white");
+      headerLeftEl.classList.remove("white-bkg");
+      headerLeftEl.classList.add("no-bkg-white");
       leftArrEl.classList.remove("white-bkg");
       leftArrEl.classList.add("no-bkg-white");
       rightArrEl.classList.remove("white-bkg");
@@ -942,6 +947,8 @@ function initOccCont() {
     } else if (occContEl.className === "no-bkg-white") {    
       occContEl.classList.remove("no-bkg-white");
       occContEl.classList.add("no-bkg-black");
+      headerLeftEl.classList.remove("no-bkg-white");
+      headerLeftEl.classList.add("no-bkg-black");
       leftArrEl.classList.remove("no-bkg-white");
       leftArrEl.classList.add("no-bkg-black");
       rightArrEl.classList.remove("no-bkg-white");
@@ -949,6 +956,8 @@ function initOccCont() {
     } else {  
       occContEl.classList.remove("no-bkg-black");
       occContEl.classList.add("black-bkg");
+      headerLeftEl.classList.remove("no-bkg-black");
+      headerLeftEl.classList.add("black-bkg");
       leftArrEl.classList.remove("no-bkg-black");
       leftArrEl.classList.add("black-bkg");
       rightArrEl.classList.remove("no-bkg-black");
@@ -1044,20 +1053,24 @@ document.addEventListener('swiped-right', function(e) {
 // swiped-up
 document.addEventListener('swiped-up', function(e) {
   console.log("swiped up")
+
+  if (rNum === (occasions.length - 1)){
+    rNum = 0; 
+  } else {
+    rNum++;
+  }
+  
+});
+// swiped-down
+document.addEventListener('swiped-down', function(e) {
+  console.log("swiped down")
+
+
   if (rNum === 0){
     rNum = occasions.length - 1; 
   } else {
     rNum--;
   }
 
-});
-// swiped-down
-document.addEventListener('swiped-down', function(e) {
-  console.log("swiped down")
-  if (rNum === (occasions.length - 1)){
-    rNum = 0; 
-  } else {
-    rNum++;
-  }
 
 });

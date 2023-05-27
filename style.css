@@ -50,6 +50,8 @@ h5 {
   justify-content: space-evenly;
   background-color: rgba(250, 235, 215, .7);
   margin: 0 auto;
+  margin-top: 2px;
+  border-radius: 5px;
 }
 .countdown-container {
     display: flex;
