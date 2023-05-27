@@ -1,149 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Countdown Timer</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="style.css" />
-        <script src="script.js" defer></script>
-        <script src="./src/swiped-events.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    </head>
-    <body>
-      <section id="display">
-        <div class="header-left black-bkg">
-          <i class="far fa-question-circle" id="help"></i>
-          <button id="body-add">Add</button>
-          <button id="body-edit">Edit</button>
-          <button id="body-del">Del</button>
-        </div>
-        <button id="ham">☰</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
-       
-      <div id="occasion-container" class="black-bkg">
-        <h1 id="occasion"></h1>
+  <title>Steves Portfolio</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-        <div class="countdown-container">
-            <div class="countdown-el years-c">
-              <p class="big-text" id="years">0</p>
-              <span>years</span>
-            </div>
-            <div class="countdown-el days-c">
-                <p class="big-text" id="days">0</p>
-                <span>days</span>
-            </div>
-            <div class="countdown-el hours-c">
-                <p class="big-text" id="hours">0</p>
-                <span>hours</span>
-            </div>
-            <div class="countdown-el mins-c">
-                <p class="big-text" id="mins">0</p>
-                <span>mins</span>
-            </div>
-            <div class="countdown-el seconds-c">
-                <p class="big-text" id="seconds">0</p>
-                <span>seconds</span>
-            </div>
-        </div>
-      </div>
-        <nav id="navbar">
-          
-        </nav>
-      </section>
-
-
-    
-    <section id="custom-occasions" class="hidden">
+</head>
+<body>
   
-      <h1>List of Custom Occasions</h1>
-      <div id="custom-occasions-container">
-         
+  <nav id="navbar">
+    <a href="#about">About</a>
+    <a href="#games">Games</a>
+    <a href="#misc">Misc</a>
+    <a href="#slide">Slideshows</a>
+    <a href="#travel">Travel</a>
+    <a href="#sites">Sites</a>
+  </nav>
+
+  <header id="about" class="hidden-left">
+    <h1>Hello!</h1>
+    <p>My name is Steve</p>
+    <p class="intro">
+    Welcome to my Collection.
+    </p>
+    <p class="intro">
+    I have included a number of games and miscellany that you might enjoy,
+    as well as samples of Custom Travel Guides and Slideshows that
+    I have created.
+    If you would like to help support future additions and enhancements, please consider
+    contributing the proverbial "cup of coffee". Thanks.   
+    </p>
+    <img id="coffee" src="./coffee-icon-png-13680.png" width="75px" alt="">
+
+
+    <div id="donate-button-container">
+      <div id="donate-button"></div>
+      <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+      <script>
+      PayPal.Donation.Button({
+      env:'production',
+      hosted_button_id:'HNWFFTD9AWTPY',
+      image: {
+      src:'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+      alt:'Donate with PayPal button',
+      title:'PayPal - The safer, easier way to pay online!',
+      }
+      }).render('#donate-button');
+      </script>
       </div>
-    </section>
+      
 
 
-    <section id="custom-edit" class="hidden">
 
 
-      <div id="form-input"> 
-        <select id="selectOccasion" onchange="occSelected()">
-          <option>Select Occasion to Delete</option>
-        </select>
-        <div id="custom-occasion">
-        <label for="custom"><h5>
-          Name of Custom Occasion:
-        </h5></label>
-        <input type="text" id="custom" name="custom" maxlength="25" placeholder="Occasion"> 
+
+  </header>
+
+  <section id="games">
+    <h2>GAMES</h2>
+     
+    <div class="container games-container">
+      <div class="item">
+        <a href="https://stevezadev.github.io/worldle/" target="_blank"> 
+          <img src="./imgs/worldle.jpg" alt="">
+        </a>
+        <p>Worldle - A different take on the already classic game</p>
       </div>
-        <hr></hr>
-      </div> 
-
-
-      <textarea id="landscape-text" placeholder="Landscape - You can copy a link to an internet or personal cloud image."></textarea> 
-      <img id="landscape-img"  src="./img/christmas.jpg">
-      <textarea id="portrait-text" placeholder="Portrait - You can copy a link to an internet or personal cloud image."></textarea> 
-      <img id="portrait-img" src="./img/christmas.jpg">
-      <hr></hr>
-
-
-
-      <label for="date"><h5>
-        Pick a Date (1 to 12):
-      </h5></label>
-      <input type="date" id="date" name="date"> 
-      <hr></hr>
-
-      <label for="hour"><h5>
-        Hour (0 to 23):
-      </h5></label>
-      <input type="number" id="hour" name="hour" min="0" max="23" value="0"> 
-      <hr></hr>
-
-      <label for="minute"><h5>
-        Minute (0 to 59):
-      </h5></label>
-      <input type="number" id="minute" name="minute" min="0" max="59" value="0"> 
-      <hr></hr>
-
-      <div id="button-collection">
-        <button id="add-btn">Add</button>
-        <button id="del-btn">Delete</button>
-        <button id="sub-btn">Submit</button>
-        <button id="cancel-btn">Cancel</button>
+      <div class="item">
+        <a href="https://stevezadev.github.io/wordlength/" target="_blank"> 
+          <img src="./imgs/wordlength.JPG" alt="">
+        </a>
+        <p>Wordlength - Choose your word length</p>
       </div>
-    
-    </section>
-    
+      <!--
+      <div class="item">
+        <a href="https://stevezadevz.github.io/wordleUke/" target="_blank"> 
+          <img src="./imgs/wordleuke.jpg" alt=""><span></span>
+        </a>
+        <p>Українська Worldle - Also doubles as a beginners aide</p>
+      </div>
+      -->
+      <div class="item">
+        <a href="https://stevezadev.github.io/movies/" target="_blank"> 
+          <img src="./imgs/movies.JPG" alt="">
+        </a>
+        <p>M.O.V.I.E.S.</p>
+      </div>
+      <!--
+      <div class="item">
+        <a href="https://stevezadevz.github.io/elementle/" target="_blank"> 
+          <img src="./imgs/elementle.jpg" alt=""><span></span>
+        </a>
+        <p>Elementle - Elements (Wordle style)</p>
+      </div>
+      -->
+      <div class="item">
+        <a href="https://stevezadev2.github.io/palabrle/" target="_blank"> 
+          <img src="./imgs/palabrle.JPG" alt="">
+        </a>
+        <p>Palabrle - Wordle in Spanish</p>
+      </div>
+      <div class="item">
+        <a href="https://stevezadev2.github.io/sportle/" target="_blank"> 
+          <img src="./imgs/Baseball_(crop)_transparent.png" alt=""><span></span>
+        </a>
+        <p>Sportle - Sports (Wordle style)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="misc">
+    <h2>MISC</h2>
+     
+    <div class="container misc-container">
+      <div class="item it">
+        <a href="https://stevezadev.github.io/countdown/" target="_blank"> 
+          <img src="./imgs/summersolstice.JPG" alt="">
+        </a>
+        <p>Countdown - Add you own dates to defaults</p>
+      </div>
+      <div class="item it">
+        <a href="https://stevezadev.github.io/world-time/" target="_blank"> 
+          <img src="./imgs/worldtime.JPG" alt=""><span></span>
+        </a>
+        <p>World Time</p>
+        <p>World Time</p>
+      </div>
+    </div>
+  </section>
 
 
-    <div id="help-modal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Help for COUNTDOWNS</h2>
-         <span class="close" id="close-help">&times;</span>
-        </div>
-        <div class="modal-body">
-        </div>
-  
+
+  <section id="slide">
+    <h2>SLIDESHOWS</h2>
+    <h3>Here are samples of slideshows that I have created. </h3>
+    <h3><a href="mailto:stevezadev@gmail.com?subject=Custom Slideshow" target="_blank">Email me</a> about a Custom Slideshow for as little as $10</h3>
+     
+    <div class="container slide-container">
+      <div class="item">
+        <a href="https://drive.google.com/file/d/1TMS7pzjvW9rsQbkeEDZWzv0pCDCp3WGT/view?usp=share_link" target="_blank"> 
+          <img src="./imgs/resized.jpg" alt="">
+        </a>
+        <p>Ukraine 2022</p>
+      </div>
+      <div class="item">
+        <a href="https://drive.google.com/file/d/1FnZ3LyZi14eylyUCP8dZ1Pmr7VxKybbL/view?usp=share_link" target="_blank"> 
+          <img src="./imgs/londonslideshow.JPG" alt="">
+        </a>
+        <p>London 2022</p>
+      </div>
+      <div class="item">
+        <a href="https://drive.google.com/file/d/15kckmBQivcjjoGIdJYKBTsj_WlfXm1Zh/view?usp=share_link" target="_blank"> 
+          <img src="./imgs/London Take 2.jpg" alt="">
+        </a>
+        <p>London 2022 - Take 2</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!--
+  <section id="travel">
+    <h2>TRAVEL</h2>
+    <h3><a href="mailto:stevezadev@gmail.com?subject=Travel Plan" target="_blank">Email me</a> for a Custom Travel Plan for as little as $20</h3>
+    <div class="container trav-container">
+      <div class="item">
+        <a href="https://travelideas4you.wixsite.com/amsterdamtemplate" target="_blank"> 
+          <img src="./imgs/amsterdam.JPG" alt="">
+        </a>
+        <p>Amsterdam 2021</p>
+      </div>
+    <div class="container trav-container">
+      <div class="item">
+        <a href="https://travelideas4you.wixsite.com/londonomg" target="_blank"> 
+          <img src="./imgs/london.png" alt="">
+        </a>
+        <p>London 2022</p>
+      </div>
+    </div>
+  </section>
+-->
+
+<section id="travel">
+  <h2>TRAVEL</h2>
+  <h3><a href="mailto:stevezadev@gmail.com?subject=Travel Plan" target="_blank">Email me</a> for a Custom Travel Plan for as little as $20</h3>
+
+  <div class="container trav-container">
+    <div class="item">
+      <a href="https://travelideas4you.wixsite.com/amsterdamtemplate" target="_blank"> 
+        <img src="./imgs/amsterdam.JPG" alt="">
+      </a>
+      <p>Amsterdam 2021</p>
+    </div>
+    <div class="item">
+      <a href="https://travelideas4you.wixsite.com/londonomg" target="_blank"> 
+        <img src="./imgs/london.png" alt="">
+      </a>
+      <p>London 2022</p>
+    </div>
+  </div>
+
+</section>
+
+
+  <section id="sites">
+    <h2>Interesting Sites</h2>
+    <p>Here are links to sites I have recently come across</p>
+
+    <div class="container site-container">
+      <div class="item">
+        <a href="https://www.youtube.com/@smalin" target="_blank"> 
+          <img src="./imgs/malin.JPG" alt="">
+        </a>
+        <p>Classical Music Animations</p>
+        <p>Just found Steve Malinowski's site with hundreds of great animations done over nearly 15 years.</p>
+      </div>
+      <div class="item">
+        <a href="https://www.youtube.com/@ThePiorFam/shorts" target="_blank"> 
+          <img src="./imgs/prior.png" alt="">
+        </a>
+        <p>The Pior Family</p>
+        <p>Awfully cute and loquacios kids.</p>
       </div>
     </div>
 
-    <div class="action-buttons" id="action-buttons">
-      <button class="left-button black-bkg" id="left-button">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-      <button class="right-button black-bkg" id="right-button">
-        <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
+  </section>
 
+<!--
+  <section id="social">
+    <h2>Social Media</h2>
+    <p>you can find me</p>
+    <ul  class="social-ul">
+      <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+    </ul>
 
-    </body>
-    
+  </section>
+-->
+  <footer>
+  <!--  Copyright &copy;2023   <a id="footer-email" class="mailto-link" href="mailto:stevezadev@gmail.com?subject=Custom Slideshow" target="_blank">stevezadev@gmail.com</a> -->
+    Copyright &copy;2023   <a id="footer-email" class="mailto-link" href="mailto:stevezadev@gmail.com" target="_blank">stevezadev@gmail.com</a>
+    <p class="mailto-msg">Click to copy Email Address</p>
+  </footer>
+  <script defer src="./index.js"></script>
+</body>
 </html>
