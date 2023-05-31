@@ -76,7 +76,7 @@ Select the icon in the upper right to display the default occasions available an
 <br>
  The default display of the countdown will be shown in white text over a semi-transparent black background box. Click anywhere within the background box to cycle thru the other displays available that may better suit your eye or go better with the image you have chosen for your background.  
 `
-
+let viewHelpText = `Thanks for checking out COUNTDOWN. Please view the Help "?" icon for useful tips and hints `
 
 let occasions = []
 
@@ -142,6 +142,7 @@ const bodyEdit = document.getElementById("body-edit");
 const bodyDel = document.getElementById("body-del");
 
 initHelpModal();
+initViewHelpModal();
 initOccCont();
 initBkg();
 
@@ -896,6 +897,7 @@ function initHelpModal() {
     helpEl = document.querySelector(".modal-body")
  //   helpEl.innerText = helpText + "\n" + "\n"
     helpEl.innerHTML = helpText
+    window.localStorage.setItem('viewedhelpC', "viewed");
     const audio = new Audio ("./auds/stats.mp3");
     audio.play()
   });
@@ -914,6 +916,48 @@ function initHelpModal() {
     }
   });
 }
+
+
+
+function initViewHelpModal() {
+  const modal = document.getElementById("view-help-modal");
+
+  // Get the <span> element that closes the modal
+  const span = document.getElementById("close-view-help");
+
+
+  // Open the modal if the user has not read the help
+  let timeoutID = setTimeout(function(){
+    if (!window.localStorage.getItem("viewedhelpC")){
+      modal.style.display = "block";
+      viewHelpEl = document.getElementById("view-help")
+      viewHelpEl.innerHTML = viewHelpText
+    } else {
+      return;
+    }
+}, 2000);
+
+
+
+
+  //  const audio = new Audio ("./auds/stats.mp3");
+  //  audio.play()
+
+
+  // When the user clicks on <span> (x), close the modal
+  span.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+}
+
+
 
 
 function initOccCont() {
