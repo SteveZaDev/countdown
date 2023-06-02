@@ -75,6 +75,8 @@ let helpText = `COUNTDOWN to any date and time in the future or count up from an
 Select the icon in the upper right to display the default occasions available and any ones that you have added. (Bear in mind that any occasions you add are specific to the device and browser you are using. If you add occasions in Firefox, those will not be available in Chrome). If on mobile, you can also swipe left/right/up/down within the countdown display to cycle thru all the occassions. 
 <br>
  The default display of the countdown will be shown in white text over a semi-transparent black background box. Click anywhere within the background box to cycle thru the other displays available that may better suit your eye or go better with the image you have chosen for your background.  
+ <br>
+ Click the "arrow" icon to cycle thru the 3 sizes of display.   
 `
 let viewHelpText = `Thanks for checking out COUNTDOWN. Please view the Help "?" icon for useful tips and hints `
 
@@ -140,6 +142,8 @@ const navbar = document.getElementById("navbar");
 const bodyAdd = document.getElementById("body-add");
 const bodyEdit = document.getElementById("body-edit");
 const bodyDel = document.getElementById("body-del");
+const resizeEl = document.getElementById("resize");
+let resizeCount = 0;
 
 initHelpModal();
 initViewHelpModal();
@@ -151,6 +155,11 @@ ham.addEventListener("click", () => {
   actionButtonsEl.classList.toggle("hidden");
   ham.classList.toggle("active");
  /* add.classList.toggle("hidden");*/
+});
+
+resizeEl.addEventListener("click", () => {
+  resizeCount++;
+  changeWidth();
 });
 
 
@@ -1118,3 +1127,75 @@ document.addEventListener('swiped-down', function(e) {
 
 
 });
+
+
+
+
+
+function changeWidth() {
+
+
+  let change = (resizeCount % 3);
+  if (change === 1){
+      document.getElementById('occasion-container').style.width = "60vw"
+      classArray = document.getElementsByClassName("big-text");
+      while (classArray.length) {
+        classArray[0].className = "med-text";
+      }
+
+      h1Array = document.getElementsByTagName("h1");
+      for (i=0; i<h1Array.length; i++) {
+        h1Array[i].style.fontSize = "2rem";
+      }
+
+      timeLiteralsArray = document.getElementsByClassName("time-literals");
+      for (i=0; i<timeLiteralsArray.length; i++) {
+        timeLiteralsArray[i].style.fontSize = "1.75rem";
+      }
+    }
+
+    if (change === 2){
+      document.getElementById('occasion-container').style.width = "40vw"
+      classArray = document.getElementsByClassName("med-text");
+      while (classArray.length) {
+        classArray[0].className = "small-text";
+      }
+
+      h1Array = document.getElementsByTagName("h1");
+      for (i=0; i<h1Array.length; i++) {
+        h1Array[i].style.fontSize = "1.25rem";
+      }
+
+      timeLiteralsArray = document.getElementsByClassName("time-literals");
+      for (i=0; i<timeLiteralsArray.length; i++) {
+        timeLiteralsArray[i].style.fontSize = "1rem";
+      }
+    }
+  
+
+    if (change === 0){
+      document.getElementById('occasion-container').style.width = "98vw"
+      classArray = document.getElementsByClassName("small-text");
+      while (classArray.length) {
+        classArray[0].className = "big-text";
+      }
+
+      h1Array = document.getElementsByTagName("h1");
+      for (i=0; i<h1Array.length; i++) {
+        h1Array[i].style.fontSize = "3.5rem";
+      }
+
+      timeLiteralsArray = document.getElementsByClassName("time-literals");
+      for (i=0; i<timeLiteralsArray.length; i++) {
+        timeLiteralsArray[i].style.fontSize = "2.25rem";
+      }
+    }
+
+
+
+
+
+
+
+}
+ 
