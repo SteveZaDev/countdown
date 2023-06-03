@@ -269,6 +269,7 @@ button:hover{
     width: 98vw;
     max-width: 700px;
     border-radius: 25px;
+    margin: 0 auto;
    }
 
    .occasion-small{
@@ -826,4 +827,8 @@ label {
 
 .med-text{
   font-size: 2rem;
+}
+
+span > .time-literals{
+  font-size: 5rem;
 }

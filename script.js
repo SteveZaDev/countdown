@@ -1137,7 +1137,7 @@ function changeWidth() {
 
   let change = (resizeCount % 3);
   if (change === 1){
-      document.getElementById('occasion-container').style.width = "60vw"
+      document.getElementById('occasion-container').style.width = "40vw"
       classArray = document.getElementsByClassName("big-text");
       while (classArray.length) {
         classArray[0].className = "med-text";
@@ -1155,7 +1155,7 @@ function changeWidth() {
     }
 
     if (change === 2){
-      document.getElementById('occasion-container').style.width = "40vw"
+      document.getElementById('occasion-container').style.width = "35vw"
       classArray = document.getElementsByClassName("med-text");
       while (classArray.length) {
         classArray[0].className = "small-text";
