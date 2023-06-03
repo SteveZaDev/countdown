@@ -45,7 +45,7 @@ h5 {
 }
 
 .header-left{
-  width: 175px;
+  width: 245px;
   display: flex;
   justify-content: space-evenly;
   background-color: rgba(250, 235, 215, .7);
