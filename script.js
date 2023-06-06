@@ -1137,7 +1137,7 @@ function changeWidth() {
 
   let change = (resizeCount % 3);
   if (change === 1){
-      document.getElementById('occasion-container').style.width = "40vw"
+      document.getElementById('occasion-container').style.width = "55vw"
       classArray = document.getElementsByClassName("big-text");
       while (classArray.length) {
         classArray[0].className = "med-text";
@@ -1145,17 +1145,17 @@ function changeWidth() {
 
       h1Array = document.getElementsByTagName("h1");
       for (i=0; i<h1Array.length; i++) {
-        h1Array[i].style.fontSize = "2rem";
+        h1Array[i].style.fontSize = "1.6rem";
       }
 
       timeLiteralsArray = document.getElementsByClassName("time-literals");
       for (i=0; i<timeLiteralsArray.length; i++) {
-        timeLiteralsArray[i].style.fontSize = "1.75rem";
+        timeLiteralsArray[i].style.fontSize = "1.25rem";
       }
     }
 
     if (change === 2){
-      document.getElementById('occasion-container').style.width = "35vw"
+      document.getElementById('occasion-container').style.width = "155px"
       classArray = document.getElementsByClassName("med-text");
       while (classArray.length) {
         classArray[0].className = "small-text";
@@ -1163,12 +1163,12 @@ function changeWidth() {
 
       h1Array = document.getElementsByTagName("h1");
       for (i=0; i<h1Array.length; i++) {
-        h1Array[i].style.fontSize = "1.25rem";
+        h1Array[i].style.fontSize = ".95rem";
       }
 
       timeLiteralsArray = document.getElementsByClassName("time-literals");
       for (i=0; i<timeLiteralsArray.length; i++) {
-        timeLiteralsArray[i].style.fontSize = "1rem";
+        timeLiteralsArray[i].style.fontSize = ".75rem";
       }
     }
   
