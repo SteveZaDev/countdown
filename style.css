@@ -271,6 +271,7 @@ button:hover{
     max-width: 700px;
     border-radius: 25px;
     margin: 0 auto;
+    touch-action: none;
    }
 
    .occasion-small{
