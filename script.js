@@ -76,7 +76,7 @@ Select the icon in the upper right to display the default occasions available an
 <br>
  The default display of the countdown will be shown in white text over a semi-transparent black background box. Click anywhere within the background box to cycle thru the other displays available that may better suit your eye or go better with the image you have chosen for your background.  
  <br>
- Click the "arrow" icon to cycle thru the 3 sizes of display.   
+ Click the "arrow" icon on the top of the screen to cycle thru the 3 sizes of display.   
 `
 let viewHelpText = `Thanks for checking out COUNTDOWN. Please view the Help "?" icon for useful tips and hints `
 
@@ -117,6 +117,7 @@ const cancelEl = document.getElementById("cancel-btn")
 const deleteEl = document.getElementById("del-btn")
 const submitEl = document.getElementById("sub-btn")
 
+let justDragged = false;
 
 
 /*
@@ -578,16 +579,27 @@ function initPreferencesModal() {
     }
   });
 
-    textAreaEl.addEventListener("keydown", function (event) {
-      var key = event.key;
-      // If the user has pressed enter
-      if (key === 'Enter') {
-        console.log("enter key pressed " + textAreaEl.value)
-        const body = document.getElementsByTagName('body')[0];
-        body.style.backgroundImage = "url(" + textAreaEl.value + ")"
-        window.localStorage.setItem('background', JSON.stringify(textAreaEl.value));
+
+
+
+    landscapeTextEl.addEventListener("selectionchange", function (event) {
+      const body = document.getElementsByTagName('body')[0];
+      body.style.backgroundImage = "url(" + landscapeTextEl.value + ")"
+      window.localStorage.setItem('background', JSON.stringify(landscapeTextEl.value));
       }
-    });
+     );
+
+     portraitTextEl.addEventListener("selectionchange", function (event) {
+      const body = document.getElementsByTagName('body')[0];
+      body.style.backgroundImage = "url(" + portraitTextEl.value + ")"
+      window.localStorage.setItem('background', JSON.stringify(portraitTextEl.value));
+      }
+     );
+
+
+
+
+
 
 
     // When the user clicks on the random landscpape - randomly change the background
@@ -978,6 +990,10 @@ function initOccCont() {
 
   occContEl.addEventListener("click", function (event) {
     event.stopPropagation();
+     if (justDragged){
+       justDragged = !justDragged
+       return;
+     }
         console.log("just clicked on occasion container")
      if (occContEl.className === "black-bkg") {
        occContEl.classList.remove("black-bkg");
@@ -1199,3 +1215,38 @@ function changeWidth() {
 
 }
  
+
+
+// interact.js code - testing on June 8, 2023
+
+const position = { x: 0, y: 0 }
+
+interact('#occasion-container').draggable({
+  listeners: {
+    
+    start (event) {
+      console.log(event.type, event.target)
+      justDragged = true;
+    },
+    move (event) {
+      position.x += event.dx
+      position.y += event.dy
+
+      event.target.style.transform =
+        `translate(${position.x}px, ${position.y}px)`
+    },
+  }
+})
+
+
+// trying to get swipe to work
+/*
+interact('#occasion-container').on('dragend', function (event) {
+  console.log('tak wg zyje')
+            if (event && event.swipe && event.swipe.left) {
+              console.log("poszło w lewo")
+            }
+            else if (event && event.swipe && event.swipe.right) {
+                console.log("poszło w prawo")
+            }
+        })*/
