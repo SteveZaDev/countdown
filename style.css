@@ -96,7 +96,8 @@ h5 {
 
 
 nav {
-  background-color: rebeccapurple;
+/*  background-color: rebeccapurple; */
+  background-color: darkgray;
   opacity: .85;
   position: fixed;
   top: 0;
@@ -118,12 +119,14 @@ ham.active{
 
 .btn{
   background-color: rebeccapurple;
+  background-color: rgb(55, 55, 55);
   font-size: 2vh;
   padding: .01  5rem; 
   border: none;
   color: white;
   transition: transform .5s ease-in-out; 
   margin-bottom: 5px;
+  border-radius: 10px;
 }
 button:hover{
   cursor: pointer;
@@ -132,6 +135,7 @@ button:hover{
 
 #ham{
   background-color: rebeccapurple;
+  background-color: darkgray;
   font-size: 2.5vh;
   border: none;
   color: white;
@@ -342,12 +346,6 @@ button:hover{
     padding: 10px;
   }
 
-  textarea {
-    width: 85%;
-    display: flex;
-    margin: 0 auto;
-    color: gray;
-  }
 
   #landscape-img{
     width: 25%;
@@ -377,6 +375,7 @@ button:hover{
      display: flex;
      justify-content: space-evenly;
      flex-direction: column;
+     height: 75vh
    }
 
    i{
@@ -751,7 +750,11 @@ input {
 }
  
 textarea {
-	height: 50px;
+  width: 85%;
+  display: flex;
+  margin: 0 auto;
+  color: gray;
+ 	height: 75px;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 5px;
