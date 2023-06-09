@@ -25,15 +25,16 @@
         window.CustomEvent.prototype = window.Event.prototype;
     }
     const occasionContainerEl = document.getElementById("occasion-container");
-    /*
+    
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
     document.addEventListener('touchend', handleTouchEnd, false);
-    */
+    
+   /*
    occasionContainerEl.addEventListener('touchstart', handleTouchStart, false);
    occasionContainerEl.addEventListener('touchmove', handleTouchMove, false);
    occasionContainerEl.addEventListener('touchend', handleTouchEnd, false);
-
+    */
 
 
     var xDown = null;
