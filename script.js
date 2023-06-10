@@ -1066,6 +1066,9 @@ function initBkg() {
   body.addEventListener("click", function () {
     console.log("just clicked on body")
     });
+    body.addEventListener("touchstart", function () {
+      console.log("just touched body")
+      });
 }
 
 
@@ -1133,6 +1136,7 @@ document.addEventListener('swiped-up', function(e) {
 // swiped-down
 document.addEventListener('swiped-down', function(e) {
   console.log("swiped down")
+  return;
 
 
   if (rNum === 0){
@@ -1250,3 +1254,26 @@ interact('#occasion-container').on('dragend', function (event) {
                 console.log("poszło w prawo")
             }
         })*/
+
+
+
+        document.getElementById('occasion-container').addEventListener("touchstart", f);
+        function f(ev){
+          console.log(ev.touches, ev.type)
+        }
+
+        document.getElementById('occasion-container').addEventListener("touchmove", f);
+        function f(ev){
+          console.log(ev.touches, ev.type)
+        }
+
+
+
+        document.getElementById('custom-edit').addEventListener("touchstart", f);
+        function f(ev){
+          ev.stopPropagation()
+          console.log("custom edit")
+          console.log(ev.touches, ev.type)
+        }
+
+   
