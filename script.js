@@ -6,6 +6,7 @@ let defaultOccasions = [
     date: "Jan 1 2023",  
     time: 0, 
     mins: 0, 
+    utc: "",
     landscapeImg:  './img/newyears.jpg',
     portraitImg: './img/newyears.jpg',
     color: 'white'},
@@ -13,6 +14,7 @@ let defaultOccasions = [
     date: "Jan 1 2024",  
     time: 0, 
     mins: 0, 
+    utc: "",
     landscapeImg:  './img/2024landscape.png',
     portraitImg:  'https://thumbs.dreamstime.com/b/golden-new-year-numbers-confetti-champagne-bottle-vertical-golden-color-palette-photo-new-year-numbers-surrounded-264564709.jpg',  
     color: 'white'},   
@@ -20,6 +22,7 @@ let defaultOccasions = [
     date: "Dec 25 2023",
     time: 0,
     mins: 0, 
+    utc: "",
     landscapeImg:  './img/christmas.jpg',
     portraitImg:  './img/christmas.jpg',
     color: 'white'},
@@ -27,6 +30,7 @@ let defaultOccasions = [
     date: "Mar 20, 2023",
     time: 16,
     mins: 24, 
+    utc: "2023-03-21T21:24:00.000+00:00",
     landscapeImg:  './img/equinox.jpg',
     portraitImg:  './img/equinox.jpg',
     color: 'white'},
@@ -34,8 +38,17 @@ let defaultOccasions = [
     date: "Jun 21, 2023",
     time: 10,
     mins: 57, 
+    utc: "2023-06-21T14:57:00.000+00:00",
     landscapeImg:  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.nbcchicago.com%2F2022%2F06%2FGettyImages-1198079326.jpg%3Fquality%3D85%26strip%3Dall%26fit%3D1200%252C675&f=1&nofb=1&ipt=932286eb3dc8b32ec3d52b0adf6ec7fa8f5c716b4dda213fa19944c99af53444&ipo=images',
     portraitImg:  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.nbcchicago.com%2F2022%2F06%2FGettyImages-1198079326.jpg%3Fquality%3D85%26strip%3Dall%26fit%3D1200%252C675&f=1&nofb=1&ipt=932286eb3dc8b32ec3d52b0adf6ec7fa8f5c716b4dda213fa19944c99af53444&ipo=images',
+    color: 'white'},
+    {occ: "Autumnal Equinox 2023",
+    date: "Sep 23, 2023",
+    time: 10,
+    mins: 57, 
+    utc: "2023-09-23T06:50:00.000+00:00",
+    landscapeImg:  'https://images.pexels.com/photos/1114896/pexels-photo-1114896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    portraitImg:  'https://images.pexels.com/photos/663317/pexels-photo-663317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     color: 'white'}    
 ]
 
@@ -200,6 +213,17 @@ bodyEdit.addEventListener("click", () => {
 //  nav.innerText = "";
 //  createDefOccasionButtons()
  
+for (i=0; i<defaultOccasions.length; i++){
+  let date = new Date
+  if (defaultOccasions[i].utc){
+    date = new Date(defaultOccasions[i].utc)
+  } else {
+    date = new Date
+  }
+  date.toLocaleString();
+  console.log("solstice = " + date)
+}
+
 
 
 
@@ -242,9 +266,18 @@ function countdown(){
     // function countdown() {
         const occasionDate = new Date(countdownDate); 
 
-      
-        occasionDate.setHours(occasions[rNum].time);
-        occasionDate.setMinutes(occasions[rNum].mins);
+
+        // Added on June 13, 2023 - Day could still be off because of time zone and not sure about effects of DST
+        if (occasions[rNum].utc){
+          let workDate = new Date(occasions[rNum].utc);
+            console.log("workdate = " + workDate)
+            occasionDate.setHours(workDate.getHours());
+            occasionDate.setMinutes(workDate.getMinutes());
+        } else {
+          occasionDate.setHours(occasions[rNum].time);
+          occasionDate.setMinutes(occasions[rNum].mins);
+        }
+
         const currentDate = new Date();
     //    console.log("current date = " + currentDate)
 
@@ -741,6 +774,7 @@ function createDefOccasionButtons(){
             date: "May 12 2023",  
             time: 0, 
             mins: 0, 
+            utc: "", 
             landscapeImg:  './img/newyears.jpg',
             portraitImg:  './img/newyears.jpg',
             color: 'white'
@@ -1158,6 +1192,7 @@ function changeWidth() {
   let change = (resizeCount % 3);
   if (change === 1){
       document.getElementById('occasion-container').style.width = "55vw"
+      document.getElementById('occasion-container').style.maxWidth = "350px"
       classArray = document.getElementsByClassName("big-text");
       while (classArray.length) {
         classArray[0].className = "med-text";
@@ -1195,6 +1230,7 @@ function changeWidth() {
 
     if (change === 0){
       document.getElementById('occasion-container').style.width = "98vw"
+      document.getElementById('occasion-container').style.maxWidth = "700px"
       classArray = document.getElementsByClassName("small-text");
       while (classArray.length) {
         classArray[0].className = "big-text";
