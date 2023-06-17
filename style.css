@@ -19,12 +19,12 @@
 }
 
 body {
-  /*  background-image: url(./img/newyears.jpg);*/
+    background-image: url(./img/newyearssmall.jpg);
     background-size: cover;
     background-size: stretch;
 
    
-    background-position: top;
+    background-position: center center;
     display: flex;
     flex-direction: column;
     align-items: center;
